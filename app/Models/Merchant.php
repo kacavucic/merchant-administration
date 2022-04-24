@@ -10,20 +10,6 @@ class Merchant extends Model
     use HasFactory;
 
     /**
-     * The primary key associated with the table.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'merchant_code';
-
-    /**
-     * The data type of the auto-incrementing ID.
-     *
-     * @var string
-     */
-    protected $keyType = 'string';
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -41,6 +27,6 @@ class Merchant extends Model
      */
     public function stores()
     {
-        return $this->hasMany(Stores::class, "merchant_code", "merchant_code");
+        return $this->hasMany(Stores::class);
     }
 }

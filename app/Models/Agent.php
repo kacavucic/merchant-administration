@@ -26,6 +26,6 @@ class Agent extends Model
      */
     public function store()
     {
-        return $this->belongsTo(Store::class, "store_code", "store_code");
+        return $this->belongsTo(Store::class);
     }
 }

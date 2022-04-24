@@ -14,14 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('stores', function (Blueprint $table) {
-            $table->string('store_code')->unique();
-            $table->string('merchant_code');
+            $table->id();
             $table->string('display_name');
             $table->string('address');
             $table->string('phone_number');
             $table->string('email');
             $table->timestamps();
-            $table->foreign('merchant_code')->references('merchant_code')->on('merchants');
+            $table->foreignId('merchant_id');
         });
     }
 

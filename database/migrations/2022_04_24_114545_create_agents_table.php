@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('agents', function (Blueprint $table) {
             $table->id();
-            $table->string('store_code');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone_number');
             $table->string('email');
             $table->timestamps();
-            $table->foreign('store_code')->references('store_code')->on('stores');
+            $table->foreignId('merchant_id');
+            $table->foreignId('store_id');
         });
     }
 
