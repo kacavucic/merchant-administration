@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Merchant extends Model
+class Store extends Model
 {
     use HasFactory;
-
+    
     /**
      * The primary key associated with the table.
      *
      * @var string
      */
-    protected $primaryKey = 'merchant_code';
+    protected $primaryKey = 'store_code';
 
     /**
      * The data type of the auto-incrementing ID.
@@ -32,15 +32,14 @@ class Merchant extends Model
         'display_name',
         'address',
         'phone_number',
-        'email',
-        'account_number',
+        'email'
     ];
 
     /**
-     * Get the stores for the merchant.
+     * Get the merchant that owns the store.
      */
-    public function stores()
+    public function merchant()
     {
-        return $this->hasMany(Stores::class, "merchant_code", "merchant_code");
+        return $this->belongsTo(Merchant::class, "merchant_code", "merchant_code");
     }
 }
