@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Store extends Model
 {
     use HasFactory;
-    
+
     /**
      * The primary key associated with the table.
      *
@@ -41,5 +41,13 @@ class Store extends Model
     public function merchant()
     {
         return $this->belongsTo(Merchant::class, "merchant_code", "merchant_code");
+    }
+
+    /**
+     * Get the agents for the store.
+     */
+    public function agents()
+    {
+        return $this->hasMany(Agent::class, "store_code", "store_code");
     }
 }
