@@ -17,11 +17,11 @@ class MerchantFactory extends Factory
     public function definition()
     {
         return [
-            'display_name' => $this->faker->name(),
-            'address' => $this->faker->text(20),
-            'phone_number' => ''.$this->faker->passthrough(rand(1111111111, 9999999999)),
-            'email' => $this->faker->email(),
-            'account_number' => ''.$this->faker->passthrough(rand(1111111111111, 9999999999999)),
+            'display_name' => $this->faker->company(),
+            'address' => $this->faker->streetAddress(),
+            'phone_number' => $this->faker->e164PhoneNumber(),
+            'email' => $this->faker->companyEmail(),
+            'account_number' => $this->faker->bankAccountNumber(),
         ];
     }
 }

@@ -17,6 +17,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Merchant::truncate();
+        Store::truncate();
+        Agent::truncate();
 
         $merchant1 = Merchant::factory()->create();
         $merchant2 = Merchant::factory()->create();
@@ -36,17 +39,14 @@ class DatabaseSeeder extends Seeder
 
         Agent::factory(3)->create([
             'store_id' => $store1->id,
-            'merchant_id' => $merchant1->id
         ]);
 
         Agent::factory(3)->create([
             'store_id' => $store2->id,
-            'merchant_id' => $merchant2->id
         ]);
 
         Agent::factory(3)->create([
             'store_id' => $store3->id,
-            'merchant_id' => $merchant3->id
         ]);
     }
 }

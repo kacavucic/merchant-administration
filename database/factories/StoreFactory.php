@@ -17,10 +17,10 @@ class StoreFactory extends Factory
     public function definition()
     {
         return [
-            'display_name' => $this->faker->name(),
-            'address' => $this->faker->text(20),
-            'phone_number' => '' . $this->faker->passthrough(rand(1111111111, 9999999999)),
-            'email' => $this->faker->email(),
+            'display_name' => $this->faker->company(),
+            'address' => $this->faker->streetAddress(),
+            'phone_number' => $this->faker->e164PhoneNumber(),
+            'email' => $this->faker->companyEmail(),
         ];
     }
 }

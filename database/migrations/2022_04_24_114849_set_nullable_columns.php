@@ -14,22 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::table('merchants', function (Blueprint $table) {
-            $table->string('address')->nullable()->change();
             $table->string('phone_number')->nullable()->change();
-            $table->string('email')->nullable()->change();
-            $table->string('account_number')->nullable()->change();
         });
 
         Schema::table('stores', function (Blueprint $table) {
-            $table->string('display_name')->nullable()->change();
-            $table->string('address')->nullable()->change();
             $table->string('phone_number')->nullable()->change();
-            $table->string('email')->nullable()->change();
         });
 
         Schema::table('agents', function (Blueprint $table) {
             $table->string('phone_number')->nullable()->change();
-            $table->string('email')->nullable()->change();
         });
     }
 
@@ -40,23 +33,16 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::cretableate('merchants', function (Blueprint $table) {
-            $table->string('address')->change();
-            $table->string('phone_number')->change();
-            $table->string('email')->change();
-            $table->string('account_number')->change();
+        Schema::table('merchants', function (Blueprint $table) {
+            $table->string('phone_number')->nullable(false)->change();
         });
 
         Schema::table('stores', function (Blueprint $table) {
-            $table->string('display_name')->change();
-            $table->string('address')->change();
-            $table->string('phone_number')->change();
-            $table->string('email')->change();
+            $table->string('phone_number')->nullable(false)->change();
         });
 
         Schema::table('agents', function (Blueprint $table) {
-            $table->string('phone_number')->change();
-            $table->string('email')->change();
+            $table->string('phone_number')->nullable(false)->change();
         });
     }
 };

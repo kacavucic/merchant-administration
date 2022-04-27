@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('phone_number');
             $table->string('email');
             $table->timestamps();
-            $table->foreignId('merchant_id');
             $table->foreignId('store_id');
         });
     }
