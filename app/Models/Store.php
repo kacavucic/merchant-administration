@@ -18,7 +18,8 @@ class Store extends Model
         'display_name',
         'address',
         'phone_number',
-        'email'
+        'email',
+        'merchant_id'
     ];
 
     /**

@@ -4,9 +4,10 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class MerchantCollection extends ResourceCollection
+class StoreCollection extends ResourceCollection
 {
-    public static $wrap = 'merchants';
+
+    public static $wrap = 'stores';
 
     /**
      * Transform the resource collection into an array.

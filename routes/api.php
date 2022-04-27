@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MerchantController;
+use App\Http\Controllers\MerchantStoreController;
+use App\Http\Controllers\StoreController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('merchants', MerchantController::class)->except(['create', 'edit']);
+Route::resource('stores', StoreController::class)->except(['create', 'edit']);
+Route::resource('merchant.store', MerchantStoreController::class)->only(['index']);
