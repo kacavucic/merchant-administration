@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Agent;
 use App\Models\Merchant;
 use App\Models\Store;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,9 +18,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        User::truncate();
         Merchant::truncate();
         Store::truncate();
         Agent::truncate();
+
+        User::factory(5)->create();
 
         $merchant1 = Merchant::factory()->create();
         $merchant2 = Merchant::factory()->create();

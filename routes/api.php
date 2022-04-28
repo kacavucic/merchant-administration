@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AgentController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\MerchantStoreController;
 use App\Http\Controllers\StoreAgentController;
@@ -23,9 +24,24 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('merchants', MerchantController::class)->except(['create', 'edit']);
-Route::resource('stores', StoreController::class)->except(['create', 'edit']);
-Route::resource('merchants.stores', MerchantStoreController::class)->only(['index']);
-Route::resource('agents', AgentController::class)->except(['create', 'edit']);
-Route::resource('stores.agents', StoreAgentController::class)->only(['index']);
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/profile', function (Request $request) {
+        return auth()->user();
+    });
 
+    Route::post('/logout', [AuthController::class, 'logout']);
+
+    Route::resource('merchants', MerchantController::class)->only(['update', 'store', 'destroy']);
+    Route::resource('stores', StoreController::class)->only(['update', 'store', 'destroy']);
+    Route::resource('agents', AgentController::class)->only(['update', 'store', 'destroy']);
+});
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::resource('merchants', MerchantController::class)->only(['index', 'show']);
+Route::resource('stores', StoreController::class)->only(['index', 'show']);
+Route::resource('agents', AgentController::class)->only(['index', 'show']);
+
+Route::resource('merchants.stores', MerchantStoreController::class)->only(['index']);
+Route::resource('stores.agents', StoreAgentController::class)->only(['index']);
