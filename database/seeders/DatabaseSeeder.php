@@ -8,6 +8,7 @@ use App\Models\Store;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,11 +24,25 @@ class DatabaseSeeder extends Seeder
         Store::truncate();
         Agent::truncate();
 
-        User::factory(5)->create();
+        $user = User::factory()->create([
+            'name' => 'Katarina',
+            'email' => 'admin@gmail.com',
+            'role' => 'admin',
+            'password' => Hash::make('password'),
+        ]);
+
+        $admin = User::factory()->create([
+            'name' => 'Ana',
+            'email' => 'user@gmail.com',
+            'role' => 'user',
+            'password' => Hash::make('password'),
+        ]);
 
         $merchant1 = Merchant::factory()->create();
         $merchant2 = Merchant::factory()->create();
         $merchant3 = Merchant::factory()->create();
+
+        Merchant::factory(20)->create();
 
         $store1 = Store::factory()->create([
             'merchant_id' => $merchant1->id

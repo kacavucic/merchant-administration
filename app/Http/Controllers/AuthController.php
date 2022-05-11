@@ -14,18 +14,20 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|min:3|max:255',
             'email' => 'required|string|max:255|email|unique:users',
-            'password' => 'required|string|min:8'
+            'password' => 'required|string|min:8',
+            'role' => 'string|max:255'
         ]);
 
         if ($validator->fails())
-            return response()->json($validator->errors());
+            return response()->json(['message' => $validator->errors()], 400);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $request->role,
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
@@ -45,7 +47,7 @@ class AuthController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()
-            ->json(['message' => 'success', 'access_token' => $token, 'token_type' => 'Bearer',]);
+            ->json(['message' => 'success', 'access_token' => $token, 'user' => $user->name, 'role' => $user->role, 'token_type' => 'Bearer']);
     }
 
     public function logout()

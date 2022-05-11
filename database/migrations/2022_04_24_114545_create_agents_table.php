@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('email');
             $table->timestamps();
             $table->foreignId('store_id');
+                // ->constrained()->onDelete('cascade');
         });
     }
 
