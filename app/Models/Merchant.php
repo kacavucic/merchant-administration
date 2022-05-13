@@ -20,6 +20,8 @@ class Merchant extends Model
         'phone_number',
         'email',
         'account_number',
+        'latitude',
+        'longitude'
     ];
 
     /**

@@ -22,7 +22,9 @@ class MerchantResource extends JsonResource
             'address' => $this->resource->address,
             'phone_number' => $this->resource->phone_number,
             'email' => $this->resource->email,
-            'account_number' => $this->resource->account_number
+            'account_number' => $this->resource->account_number,
+            'latitude' => $this->resource->latitude,
+            'longitude' => $this->resource->longitude
         ];
     }
 }

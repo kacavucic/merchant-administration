@@ -33,6 +33,8 @@ class MerchantRequest extends FormRequest
             'phone_number' => 'string|max:50',
             'account_number' => 'required|string|max:50',
             'email' => 'required|string|max:50',
+            'latitude' => 'required|string|max:50',
+            'longitude' => 'required|string|max:50'
         ];
     }
 

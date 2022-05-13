@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
         $merchant2 = Merchant::factory()->create();
         $merchant3 = Merchant::factory()->create();
 
-        Merchant::factory(20)->create();
+        // Merchant::factory(20)->create();
 
         $store1 = Store::factory()->create([
             'merchant_id' => $merchant1->id

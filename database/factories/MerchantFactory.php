@@ -22,6 +22,8 @@ class MerchantFactory extends Factory
             'phone_number' => $this->faker->e164PhoneNumber(),
             'email' => $this->faker->companyEmail(),
             'account_number' => $this->faker->bankAccountNumber(),
+            'latitude' => $this->faker->latitude(),
+            'longitude' => $this->faker->longitude()
         ];
     }
 }
