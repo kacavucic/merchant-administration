@@ -16,11 +16,14 @@ class AgentFactory extends Factory
      */
     public function definition()
     {
+        $gender = $this->faker->randomElement(['male', 'female']);
         return [
-            'first_name' => $this->faker->firstName(),
+            'first_name' => $this->faker->firstName($gender),
             'last_name' => $this->faker->lastName(),
             'phone_number' => $this->faker->e164PhoneNumber(),
             'email' => $this->faker->safeEmail(),
+            'gender' => $gender,
+            'age' => $this->faker->numberBetween(18, 80),
         ];
     }
 }

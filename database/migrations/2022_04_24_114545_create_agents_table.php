@@ -19,9 +19,11 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('phone_number');
             $table->string('email');
+            $table->string('gender');
+            $table->integer('age');
             $table->timestamps();
             $table->foreignId('store_id');
-                // ->constrained()->onDelete('cascade');
+            // ->constrained()->onDelete('cascade');
         });
     }
 

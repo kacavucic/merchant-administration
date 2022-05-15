@@ -19,6 +19,8 @@ class Agent extends Model
         'last_name',
         'email',
         'phone_number',
+        'gender',
+        'age',
         'store_id'
     ];
 

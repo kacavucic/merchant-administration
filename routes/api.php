@@ -51,5 +51,8 @@ Route::group(['middleware' => ['auth:sanctum', 'role:user,admin']], function () 
 
     Route::resource('merchants.stores', MerchantStoreController::class)->only(['index']);
     Route::resource('stores.agents', StoreAgentController::class)->only(['index']);
+
+
+    
 });
 

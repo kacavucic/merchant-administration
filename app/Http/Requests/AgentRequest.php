@@ -32,6 +32,8 @@ class AgentRequest extends FormRequest
             'last_name' => 'required|string|max:30',
             'phone_number' => 'string|max:50',
             'email' => 'required|string|max:50',
+            'gender' => 'required|string',
+            'age' => 'required|integer|min:18|max:80',
             'store_id' => 'required'
         ];
     }

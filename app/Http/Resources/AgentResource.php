@@ -22,6 +22,8 @@ class AgentResource extends JsonResource
             'last_name' => $this->resource->last_name,
             'phone_number' => $this->resource->phone_number,
             'email' => $this->resource->email,
+            'gender' => $this->resource->gender,
+            'age' => $this->resource->age,
             'store' => new StoreResource($this->resource->store)
         ];
     }
