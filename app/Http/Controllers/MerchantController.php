@@ -18,9 +18,21 @@ class MerchantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $merchants = Merchant::all();
+        $merchants = Merchant::where("id", ">", 0);
+        if ($request->display_name != null) {
+            $merchants = $merchants->where("display_name", "like", "%".$request->display_name."%");
+        }
+        if ($request->sort_by != null) {
+            $order = "asc";
+            if (str_ends_with($request->sort_by, "_desc")) {
+                $request->sort_by = str_replace("_desc", "", $request->sort_by);
+                $order = "desc";
+            }
+            $merchants = $merchants->orderBy($request->sort_by, $order);
+        }
+        $merchants = $merchants->get();
         return new MerchantCollection($merchants);
     }
 

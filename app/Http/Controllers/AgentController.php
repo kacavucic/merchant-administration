@@ -15,9 +15,21 @@ class AgentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $agents = Agent::all();
+        $agents = Agent::where("id", ">", 0);
+        if ($request->last_name != null) {
+            $agents = Agent::where("last_name", "like", "%".$request->last_name."%");
+        }
+        if ($request->sort_by != null) {
+            $order = "asc";
+            if (str_ends_with($request->sort_by, "_desc")) {
+                $request->sort_by = str_replace("_desc", "", $request->sort_by);
+                $order = "desc";
+            }
+            $agents = $agents->orderBy($request->sort_by, $order);
+        }
+        $agents = $agents->get();
         return new AgentCollection($agents);
     }
 

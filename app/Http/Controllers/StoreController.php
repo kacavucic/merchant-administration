@@ -15,9 +15,21 @@ class StoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $stores = Store::all();
+        $stores = Store::where("id", ">", 0);
+        if ($request->display_name != null) {
+            $stores = Store::where("display_name", "like", "%".$request->display_name."%");
+        }
+        if ($request->sort_by != null) {
+            $order = "asc";
+            if (str_ends_with($request->sort_by, "_desc")) {
+                $request->sort_by = str_replace("_desc", "", $request->sort_by);
+                $order = "desc";
+            }
+            $stores = $stores->orderBy($request->sort_by, $order);
+        }
+        $stores = $stores->get();
         return new StoreCollection($stores);
     }
 
